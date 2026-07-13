@@ -6,24 +6,25 @@
 <title>Gedela Trinadha Rao · .NET Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0c0c0e;
-  --surface:#13131a;
-  --surface2:#1a1a24;
-  --border:#ffffff0f;
-  --border2:#ffffff1a;
-  --ink:#f0efe8;
-  --muted:#888896;
-  --dim:#44444f;
-  --accent:#7c6dfa;
-  --accent2:#a594ff;
-  --accent-glow:#7c6dfa22;
-  --green:#2dcc8f;
-  --amber:#f5a623;
+  --bg:#9fd3f3;
+  --surface:#ffffff;
+  --surface2:#f3f1ec;
+  --border:#1a1a2e0f;
+  --border2:#1a1a2e1f;
+  --ink:#1c1c24;
+  --muted:#000000;
+  --dim:#f14444;
+  --accent:#f05a0f;
+  --accent2:#4d3ad1;
+  --accent-glow:#f5f58de8;
+  --green:#1aa86f;
+  --amber:#e08a1e;
   --display:'Syne',sans-serif;
-  --mono:'Syne Mono',monospace;
+  --mono:'Manrope',monospace;
   --body:'Inter',sans-serif;
 }
 html{scroll-behavior:smooth}
@@ -34,13 +35,17 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:3
 #cursor-ring{position:fixed;width:32px;height:32px;border:1px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease;opacity:0.5}
 
 /* ── NOISE OVERLAY ── */
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.25}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 3.5rem;background:rgba(12,12,14,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);animation:fadeD .6s ease both}
+.logo-img{
+    border-radius: 100%;
+    margin-top: 9px;
+}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0.30rem 3.5rem;background:rgba(83, 145, 237, 0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);animation:fadeD .6s ease both}
 .logo{font-family:var(--mono);font-size:0.8rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em}
 .nav-links{display:flex;gap:2.5rem;list-style:none}
-.nav-links a{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a{font-family:var(--mono);font-size:0.92rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--ink)}
 .nav-badge{font-family:var(--mono);font-size:0.62rem;padding:.25rem .6rem;background:var(--accent-glow);border:1px solid var(--accent);color:var(--accent);border-radius:20px;letter-spacing:0.08em}
 
@@ -60,7 +65,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hero-bio{font-size:1rem;color:var(--muted);max-width:480px;line-height:1.8;margin-bottom:3rem;animation:fadeU .8s .4s ease both}
 .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeU .8s .5s ease both}
 .btn{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;padding:.85rem 2rem;text-decoration:none;border-radius:3px;transition:all .25s;display:inline-flex;align-items:center;gap:.5rem}
-.btn-primary{background:var(--accent);color:#fff;border:1px solid var(--accent)}
+.btn-primary{background:var(--accent);color:#fff;border:1px solid var(--accent);box-shadow:0 4px 14px var(--accent-glow)}
 .btn-primary:hover{background:var(--accent2);border-color:var(--accent2);transform:translateY(-2px)}
 .btn-ghost{border:1px solid var(--border2);color:var(--muted);background:transparent}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
@@ -91,9 +96,9 @@ section{position:relative;max-width:1200px;margin:0 auto;padding:6rem 3.5rem}
 
 /* ── EXPERIENCE ── */
 .exp-layout{margin-top:3.5rem}
-.exp-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:2.5rem;margin-bottom:1.5rem;position:relative;overflow:hidden;transition:border-color .3s}
+.exp-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:2.5rem;margin-bottom:1.5rem;position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s;box-shadow:0 1px 3px #1a1a2e08}
 .exp-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent)}
-.exp-card:hover{border-color:var(--border2)}
+.exp-card:hover{border-color:var(--border2);box-shadow:0 8px 24px #1a1a2e0d}
 .exp-top{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;margin-bottom:1.5rem;flex-wrap:wrap}
 .exp-role{font-family:var(--display);font-size:1.4rem;font-weight:700;letter-spacing:-0.01em}
 .exp-co{font-family:var(--mono);font-size:0.75rem;color:var(--muted);margin-top:.3rem;letter-spacing:0.04em}
@@ -104,10 +109,10 @@ section{position:relative;max-width:1200px;margin:0 auto;padding:6rem 3.5rem}
 
 /* ── PROJECTS ── */
 .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3.5rem}
-.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:2rem;position:relative;overflow:hidden;transition:all .3s;display:flex;flex-direction:column;gap:1rem}
-.proj-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:2rem;position:relative;overflow:hidden;transition:all .3s;display:flex;flex-direction:column;gap:1rem;box-shadow:0 1px 3px #1a1a2e08}
+.proj-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 28px #6552e81f}
 .proj-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--accent-glow) 0%,transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
-.proj-card:hover::after{opacity:1}
+.proj-card:hover::after{opacity:0.4}
 .proj-no{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;color:var(--dim)}
 .proj-name{font-family:var(--display);font-size:1.5rem;font-weight:700;letter-spacing:-0.01em;line-height:1.2}
 .proj-client{font-family:var(--mono);font-size:0.7rem;color:var(--accent);letter-spacing:0.08em}
@@ -122,8 +127,8 @@ section{position:relative;max-width:1200px;margin:0 auto;padding:6rem 3.5rem}
 
 /* ── SKILLS ── */
 .skills-layout{margin-top:3.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
-.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:border-color .3s}
-.skill-card:hover{border-color:var(--border2)}
+.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:border-color .3s,box-shadow .3s;box-shadow:0 1px 3px #1a1a2e08}
+.skill-card:hover{border-color:var(--border2);box-shadow:0 6px 18px #1a1a2e0d}
 .skill-cat{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.85rem}
 .skill-tags{display:flex;flex-wrap:wrap;gap:.4rem}
 .stag{font-size:.8rem;padding:.25rem .6rem;background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:3px;font-family:var(--mono);font-size:.65rem;letter-spacing:.04em}
@@ -141,15 +146,15 @@ section{position:relative;max-width:1200px;margin:0 auto;padding:6rem 3.5rem}
 
 /* ── CERTS ── */
 .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.75rem;margin-top:2rem}
-.cert-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1rem 1.25rem;display:flex;align-items:flex-start;gap:.75rem;font-size:.85rem;color:var(--muted);transition:border-color .3s}
-.cert-item:hover{border-color:var(--border2)}
+.cert-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1rem 1.25rem;display:flex;align-items:flex-start;gap:.75rem;font-size:.85rem;color:var(--muted);transition:border-color .3s,box-shadow .3s;box-shadow:0 1px 3px #1a1a2e08}
+.cert-item:hover{border-color:var(--border2);box-shadow:0 6px 16px #1a1a2e0d}
 .cert-ico{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:.55rem}
 
 /* ── CONTACT ── */
 .contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:3.5rem;align-items:start}
 .contact-links{display:flex;flex-direction:column;gap:.75rem}
-.c-link{display:flex;align-items:center;gap:1rem;text-decoration:none;padding:1rem 1.25rem;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--ink);font-size:.9rem;transition:all .25s}
-.c-link:hover{border-color:var(--accent);color:var(--accent);transform:translateX(4px)}
+.c-link{display:flex;align-items:center;gap:1rem;text-decoration:none;padding:1rem 1.25rem;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--ink);font-size:.9rem;transition:all .25s;box-shadow:0 1px 3px #1a1a2e08}
+.c-link:hover{border-color:var(--accent);color:var(--accent);transform:translateX(4px);box-shadow:0 6px 16px #6552e81a}
 .c-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);width:56px}
 .c-link:hover .c-label{color:var(--accent)}
 
@@ -190,7 +195,7 @@ footer p{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;color:var(
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="logo">GTR.DEV</a>
+  <a href="#hero" class="logo"><img class="logo-img" src="./Trinadh passport photo.jpg" alt="Gedela Trinadha Rao" height="70px" width="70pxpx"></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -220,6 +225,7 @@ footer p{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;color:var(
  <div class="hero-cta">
       <a href="#projects" class="btn btn-primary">→ View Projects</a>
       <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      <a href="./Trinadha_ATS_Resume.docx" download class="btn btn-ghost">Get Resume</a>
     </div>
     <div class="hero-stats">
       <div>
@@ -448,8 +454,8 @@ footer p{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;color:var(
       <a href="tel:+917036557740" class="c-link">
         <span class="c-label">Phone</span>+91 70365 57740
       </a>
-      <a href="https://linkedin.com/in/gedela-trinadha-rao-0a55a6284" target="_blank" class="c-link">
-        <span class="c-label">LinkedIn</span>gedela-trinadha-rao-0a55a6284
+      <a href="https://www.linkedin.com/in/gedelatrinadharao/" target="_blank" class="c-link">
+        <span class="c-label">LinkedIn</span> linkedin.com/in/gedelatrinadharao/
       </a>
     </div>
   </div>
