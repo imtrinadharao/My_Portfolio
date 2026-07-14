@@ -200,6 +200,24 @@ img{max-width:100%;height:auto}
 @media (min-width:769px){.menu-toggle{display:none}}
 </style>
 
+
+<style>
+.menu-toggle{display:none;cursor:pointer}
+@media (max-width:768px){
+nav{padding:.7rem 1rem;min-height:72px}
+.nav-badge{display:none}
+.menu-toggle{display:block;font-size:30px;background:none;border:0}
+.nav-links{top:72px;left:0;right:0;transform:translateY(-120%);opacity:0;pointer-events:none}
+.nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
+#hero{padding-top:120px;min-height:auto}
+.hero-eyebrow{margin-top:.5rem;font-size:.65rem;flex-wrap:wrap}
+.hero-name{font-size:2.7rem;line-height:1.05;word-break:break-word}
+.hero-name .accent-word{-webkit-text-stroke:.8px var(--accent)}
+.hero-stats{gap:1rem}
+.stat-num{font-size:2rem}
+}
+</style>
+
 </head>
 <body>
 
@@ -501,7 +519,8 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 const b=document.createElement('button');
 b.className='menu-toggle';b.innerHTML='☰';
 document.querySelector('nav').insertBefore(b,document.querySelector('.nav-badge'));
-b.onclick=()=>document.querySelector('.nav-links').classList.toggle('open');
+const navLinks=document.querySelector('.nav-links');
+b.onclick=()=>navLinks.classList.toggle('open');
 document.querySelectorAll('.nav-links a').forEach(a=>a.onclick=()=>document.querySelector('.nav-links').classList.remove('open'));
 </script>
 
