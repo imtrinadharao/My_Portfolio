@@ -40,15 +40,14 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 /* ── NAV ── */
 .logo-img{
     border-radius: 100%;
-    margin-top: 9px;
+    margin-top: 20px;
 }
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0.30rem 3.5rem;background:rgba(83, 145, 237, 0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);animation:fadeD .6s ease both}
+nav{position:fixed;top:0;left:0;right:0;z-index:2000;display:flex;justify-content:space-between;align-items:center;padding:0.30rem 3.5rem;background:rgba(83, 145, 237, 0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);animation:fadeD .6s ease both}
 .logo{font-family:var(--mono);font-size:0.8rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em}
 .nav-links{display:flex;gap:2.5rem;list-style:none}
 .nav-links a{font-family:var(--mono);font-size:0.92rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--ink)}
 .nav-badge{font-family:var(--mono);font-size:0.62rem;padding:.25rem .6rem;background:var(--accent-glow);border:1px solid var(--accent);color:var(--accent);border-radius:20px;letter-spacing:0.08em}
-
 /* ── HERO ── */
 #hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 3.5rem 4rem;overflow:hidden}
 .hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%)}
@@ -172,7 +171,20 @@ footer p{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;color:var(
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--dim);border-radius:2px}
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:1000;
+}
 
+.menu-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
 /* ── RESPONSIVE ── */
 @media(max-width:800px){
   nav{padding:1rem 1.5rem}
@@ -190,32 +202,22 @@ footer p{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;color:var(
 	
 <style>
 @media (max-width:768px){
-.nav-links{position:fixed;top:70px;left:-100%;width:100%;background:rgba(83,145,237,.98);flex-direction:column;padding:20px;transition:.3s}
-.nav-links.open{left:0}
-.menu-toggle{display:block;font-size:28px;background:none;border:none}
+nav{padding:10px 16px;}
+.nav-links{position:fixed;top:0;left:0;width:75%;max-width:320px;height:100vh;background:rgba(83,145,237,0.98);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:flex-start;padding:90px 25px 30px;gap:18px;transform:translateX(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1);z-index:1001;box-shadow:6px 0 25px rgba(0,0,0,.25);}
+.nav-links.open{transform:translateX(0);}
+
+.menu-toggle{display:block;font-size:30px;background:none;border:none;cursor:pointer;z-index:1002;}
+.nav-links li{width:100%;list-style:none;}
+
+.nav-links a{display:block;width:100%;padding:14px 10px;font-size:18px;border-bottom:1px solid #eee;}
+.nav-links a{color:white;border-bottom:1px solid rgba(255,255,255,.15);
+}
+.nav-links a:hover{color:#f05a0f;}
 body{font-size:16px}
-img{max-width:100%;height:auto}
+img{max-width:50px;height:50px ;border-radius: 100%;    margin-top: 20px;}
 .btn,.c-link{min-height:48px}
 }
 @media (min-width:769px){.menu-toggle{display:none}}
-</style>
-
-
-<style>
-.menu-toggle{display:none;cursor:pointer}
-@media (max-width:768px){
-nav{padding:.7rem 1rem;min-height:72px}
-.nav-badge{display:none}
-.menu-toggle{display:block;font-size:30px;background:none;border:0}
-.nav-links{top:72px;left:0;right:0;transform:translateY(-120%);opacity:0;pointer-events:none}
-.nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
-#hero{padding-top:120px;min-height:auto}
-.hero-eyebrow{margin-top:.5rem;font-size:.65rem;flex-wrap:wrap}
-.hero-name{font-size:2.7rem;line-height:1.05;word-break:break-word}
-.hero-name .accent-word{-webkit-text-stroke:.8px var(--accent)}
-.hero-stats{gap:1rem}
-.stat-num{font-size:2rem}
-}
 </style>
 
 </head>
@@ -226,7 +228,7 @@ nav{padding:.7rem 1rem;min-height:72px}
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="logo"><img class="logo-img" src="./Trinadh passport photo.jpg" alt="Gedela Trinadha Rao" height="70px" width="70pxpx"></a>
+  <button class="menu-toggle">☰</button>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -235,9 +237,10 @@ nav{padding:.7rem 1rem;min-height:72px}
     <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="nav-badge">● Available</div>
+    <a href="#hero" class="logo"><img class="logo-img" src="./Trinadh passport photo.jpg" alt="Gedela Trinadha Rao" height="70px" width="70px"></a>
+  <!-- <div class="nav-badge">● Available</div> -->
 </nav>
-
+<div class="menu-overlay"></div>
 <!-- HERO -->
 <div id="hero">
   <div class="hero-grid-lines"></div>
@@ -507,22 +510,30 @@ document.querySelectorAll('a,.proj-card,.skill-card,.exp-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.opacity='0.25'});
   el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.opacity='0.5'});
 });
-
-// Scroll reveal
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// Hero name hover (already in CSS), just init
-</script>
-	
+</script>	
 <script>
-const b=document.createElement('button');
-b.className='menu-toggle';b.innerHTML='☰';
-document.querySelector('nav').insertBefore(b,document.querySelector('.nav-badge'));
-const navLinks=document.querySelector('.nav-links');
-b.onclick=()=>navLinks.classList.toggle('open');
-document.querySelectorAll('.nav-links a').forEach(a=>a.onclick=()=>document.querySelector('.nav-links').classList.remove('open'));
-</script>
+const menuBtn = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+const overlay = document.querySelector(".menu-overlay");
 
+menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+    overlay.classList.toggle("show");
+});
+
+overlay.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    overlay.classList.remove("show");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+    link.addEventListener("click",()=>{
+        navLinks.classList.remove("open");
+        overlay.classList.remove("show");
+    });
+});
+</script>
 </body>
 </html>
